@@ -1,4 +1,3 @@
-
 // Start up the menu
 $(document).ready(function(){
   $('.list-group a').on('click', function (e) {
@@ -50,52 +49,84 @@ $(document).ready(function(){
 });
 
 
+// Function Range
+function range(start, count) {
+  return Array.apply(0, Array(count))
+    .map((element, index) => index + start);
+};
+
+
 // Check Values
 function checkValues(){
 
   submitOk = true;
   var vazios = [];
   var dados = {
-    "idade": 0,
-    "peso": 0,
-    "altura": 0,
-    "triciptal": 0,
-    "subscapular": 0,
-    "toraxica": 0,
-    "axiliarMedia": 0,
-    "abdominal": 0,
-    "suprailiaca": 0,
-    "femuralMedio": 0,
-    "circBraco": 0
+    idade: 0,
+    peso: 0,
+    altura: 0,
+    triciptal: 0,
+    subscapular: 0,
+    toraxica: 0,
+    axiliarMedia: 0,
+    abdominal: 0,
+    suprailiaca: 0,
+    femuralMedio: 0
+    //"circBraco": 0
   };
   
   for (var key in dados){
     dados[key] = document.getElementById(key).value;
-
     // Criando array com elementos vazios
-    if (dados[key] == 0){
-      vazios.push(" " + key[0].toUpperCase() + key.slice(1, )); // Create a list of empties
-      submitOk = false;
-    };
+    //if (dados[key] == 0){
+    //  vazios.push(" " + key[0].toUpperCase() + key.slice(1, )); // Create a list of empties
+    //  submitOk = false;
+    //};
   };
   
-
   if (submitOk == false){
-    
+
     // Apagar alerta
+
     createAlert(vazios);
     return false;
   }else{
+
     // Apagar alerta
-    //calcular(idade, peso, altura);
-    return true;
+    
+    if (calcular_pollock_7_dobras(dados)){
+      return true
+    }else{
+      return false
+    };
   };
 
 }; // End checkValues
 
 
-function calcular(){
-  // Calcular
+function calcular_pollock_7_dobras(data){
+
+  var soma_dobras;
+  //var soma_dobras = data["triciptal"] + data["subscapular"] + data["toraxica"] + data["axiliarMedia"] + data["abdominal"] + data["suprailiaca"] + data["femuralMedio"];
+  
+  // FIX HERE
+  // FIX HERE
+  // FIX HERE
+  
+  for ( var i = 3; i < Object.keys(data).length; i++ ){  // for i=3; len(data) -> data.values
+    soma_dobras += parseInt(Object.values(data)[i]);
+    console.log(soma_dobras);
+    console.log(typeof(soma_dobras));
+  };
+  
+  
+  var results = {"DC": 1, "G_relativa": 2, "G_absoluta": 3, "MM": 0, "MM": 0, "IMC": 0};
+  // DC(g/cm³)=1,112-0,00043499*(soma 7 Dobras)+0,00000055*(soma 7 Dobras)*2-0,00028826*(Idade)
+  //results["DC"] = 1,112 - 0.00043499 * (soma 7 Dobras) + 0.00000055 * (soma 7 Dobras) * 2 - 0.00028826 * (Idade)
+  
+  
+  // G% = [(4,95 / DC) - 4,50] * 100
+  //var massa_magra = data.peso
   return false
 };
 
@@ -123,19 +154,3 @@ function deleteAlert(){
   alertaValores.parentNode.removeChild(alertaValores);
   timeElapsed = 0;
 };
-
-/*
-// Get time elapsed
-
-var startTime = Date.now(); // Get Starting time in MS
-var endTime = 0;
-var timeElapsed = 0;
-        
-function getTimeElapsed() {
-  endTime = Date.now(); // Get current Time
-  timeElapsed = endTime - startTime; // current time - startTime = Time Elapsed
-  startTime = Date.now();
-  
-  return timeElapsed * 0.001; // Convert MS to S
-}
-*/
