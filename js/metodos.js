@@ -49,13 +49,6 @@ $(document).ready(function(){
 });
 
 
-// Function Range
-function range(start, count) {
-  return Array.apply(0, Array(count))
-    .map((element, index) => index + start);
-};
-
-
 // Check Values
 function checkValues(){
 
@@ -75,20 +68,19 @@ function checkValues(){
     //"circBraco": 0
   };
   
-  for (var key in dados){
+  for (let key in dados){
     dados[key] = document.getElementById(key).value;
     // Criando array com elementos vazios
-    //if (dados[key] == 0){
-    //  vazios.push(" " + key[0].toUpperCase() + key.slice(1, )); // Create a list of empties
-    //  submitOk = false;
-    //};
+    if (dados[key] == 0){
+      vazios.push(" " + key[0].toUpperCase() + key.slice(1, )); // Create a list of empties
+      submitOk = false;
+    };
   };
   
   if (submitOk == false){
-
     // Apagar alerta
-
     createAlert(vazios);
+      
     return false;
   }else{
 
@@ -106,51 +98,83 @@ function checkValues(){
 
 function calcular_pollock_7_dobras(data){
 
-  var soma_dobras;
-  //var soma_dobras = data["triciptal"] + data["subscapular"] + data["toraxica"] + data["axiliarMedia"] + data["abdominal"] + data["suprailiaca"] + data["femuralMedio"];
+  let staticIMC = document.getElementById("staticIMC");
+  let staticMG = document.getElementById("staticMG");
+  let staticMM = document.getElementById("staticMM");
+  let soma_dobras = 0;
   
-  // FIX HERE
-  // FIX HERE
-  // FIX HERE
-  
-  for ( var i = 3; i < Object.keys(data).length; i++ ){  // for i=3; len(data) -> data.values
-    soma_dobras += parseInt(Object.values(data)[i]);
-    console.log(soma_dobras);
-    console.log(typeof(soma_dobras));
+  for (let d in data){
+    if (data[d] == data["idade"] ||
+        data[d] == data["peso"] ||
+        data[d] == data["altura"]){
+      continue;
+    }else{
+      soma_dobras += parseInt(data[d]);
+    };
   };
+  // altura	179
+  // idade	31
+  // peso	77,00
+  // triciptal - PCT	9,50
+  // subescapular	11,00
+  // toraxica	5,50
+  // axiliarMedia	8,00
+  // abdominal	15,00
+  // suprailiaca	10,00
+  // femuralMedio	9,50
   
+  let idade = data["idade"];
+  let altura = data["altura"] 
+  if (altura > 2){
+    altura = altura / 100;
+  };
+
+  var results = {"DC": 0.0, "G_relativa": 0.0, "G_absoluta": 0.0, "MM": 0.0, "MG": 0.0, "IMC": 0.0};
   
-  var results = {"DC": 1, "G_relativa": 2, "G_absoluta": 3, "MM": 0, "MM": 0, "IMC": 0};
   // DC(g/cm³)=1,112-0,00043499*(soma 7 Dobras)+0,00000055*(soma 7 Dobras)*2-0,00028826*(Idade)
-  //results["DC"] = 1,112 - 0.00043499 * (soma 7 Dobras) + 0.00000055 * (soma 7 Dobras) * 2 - 0.00028826 * (Idade)
-  
-  
-  // G% = [(4,95 / DC) - 4,50] * 100
-  //var massa_magra = data.peso
-  return false
+  // G (% relativa) = [(4,95 / DC) - 4,50] * 100
+  // G (kg absoluta) = Peso * G (% relativa) / 100
+  // Massa Magra = Peso - G kg
+  // Massa Gorda = Peso - Massa Magra
+  // IMC = Peso / Alt (m)²
+
+  results["DC"] = (1.112 - 0.00043499 * soma_dobras + 0.00000055 * soma_dobras * 2 - 0.00028826 * idade).toFixed(2);
+  results["G_relativa"] = (((4.95 / results["DC"]) - 4.5) * 100).toFixed(2);
+  results["G_absoluta"] = (data["peso"] * results["G_relativa"] / 100).toFixed(2);
+  results["MM"] = (data["peso"] - results["G_absoluta"]).toFixed(2);
+  results["MG"] = (data["peso"] - results["MM"]).toFixed(2);
+  results["IMC"] = (data["peso"] / (altura ** 2)).toFixed(2);
+  let percGordura = (results["MG"] / data["peso"] * 100).toFixed(2);
+
+  // Para test
+  // staticIMC.innerHTML = `IMC: 24.58`;
+  // staticMM.innerHTML = `Massa Magra: 9.72 Kg`;
+  // staticMG.innerHTML = `Massa Gorda: 67.28 Kg`;
+
+  staticIMC.innerHTML = `IMC: ${results["IMC"]}`;
+  staticMM.innerHTML = `Massa Magra: ${results["MM"]} Kg`;
+  staticMG.innerHTML = `Massa Gorda: ${results["MG"]} Kg -> ${percGordura} %`;
+  // console.log(results);
 };
 
 
+// Criando Alerta
 function createAlert(vazios){
-  // Encontrando alerta pai
-  var alertas = document.getElementById("alertas");
+  // Fechando alerta
+  $(".alert").alert('close');
+
+  let alertas = document.getElementById("alertas");
   // Criando alerta
-  var div = document.createElement("div");
+  let div = document.createElement("alertaValores");
+   
   div.innerHTML = `
     <div id="alertaValores" class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Atenção!</strong> Valores não preenchidos: <strong> ${vazios} </strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  `
+       <strong>Atenção!</strong> Valores não preenchidos: <strong> ${vazios} </strong>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+   `;
+
   alertas.appendChild(div);
-};
-
-
-// Deletando Alerta
-function deleteAlert(){
-  var alertaValores = document.getElementById("alertaValores");
-  alertaValores.parentNode.removeChild(alertaValores);
-  timeElapsed = 0;
 };

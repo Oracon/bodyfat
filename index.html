@@ -61,10 +61,12 @@
                   
                   <div class="tab-content" id="nav-tabContent">
                     <!--Pollock 7 dobras-->
-                     <div class="tab-pane fade show lead bd-highlight active" id="list-seven" role="tabpanel" aria-labelledby="list-seven-list">Pollock 7 dobras
+                     <!--Retirar SHOW de class-->
+                     <div class="tab-pane fade lead bd-highlight active" id="list-seven" role="tabpanel" aria-labelledby="list-seven-list">Pollock 7 dobras
                      <p class="text-left text-left lead">Insira seus dados:</p>
                      <form>
                         <!--Row Sexo-->
+                        <!--
                         <div class="d-flex justify-content small col-10 offset-sm-1">
                            <div class="col-1 input-group-small mb-3">
                               <p class="text-right small">Sexo:</p>
@@ -78,9 +80,9 @@
                               <label class="custom-control-label" for="sexoF">Feminino</label>
                            </div>
                         </div>
-
+                        -->
                         <!--Row 1-->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-around">
                            <!--Idade-->
                            <div class="col-3 col-sm-3 input-group mb-3">
                               <input id="idade" type="number" min="0" max="200" class="form-control" name="idade" placeholder="Idade" aria-label="idade" aria-describedby="basic-addon2">
@@ -105,7 +107,7 @@
                         </div>
                         
                         <!--Row 2-->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-around">
                            <!--Triciptal-->
                            <div class="col-3 col-sm-3 input-group mb-3">
                               <input id="triciptal" type="number" min="0" max="100" class="form-control" name="triciptal" placeholder="Triciptal" aria-label="triciptal" aria-describedby="basic-addon2">
@@ -130,7 +132,7 @@
                         </div>
 
                         <!--Row 3-->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-around">
                            <!--Axiliar-média-->
                            <div class="col-3 input-group mb-3">
                               <input id="axiliarMedia" type="number" min="0" max="100" class="form-control" name="axiliarMedia" placeholder="Axiliar-média" aria-label="axiliarMedia" aria-describedby="basic-addon2">
@@ -155,7 +157,7 @@
                         </div>
 
                         <!--Row 4-->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-around">
                            <!--Femural médio-->
                            <div class="col-3 input-group mb-5">
                               <input id="femuralMedio" type="number" min="0" max="100" class="form-control" name="femuralMedio" placeholder="Femural médio" aria-label="femuralMedio" aria-describedby="basic-addon2">
@@ -175,35 +177,19 @@
                         
 
                         <!--Resultados-->
-                        <div class="d-flex flex-row justify-content-center">
-                           <!--IMC-->
-                           <div class="col-3 align-items-center justify-content-start input-group">
-                              <h5 class="col-5 text-right" for="staticIMC">IMC</h5>
-                              <div class="col-7 input-group ">
-                                 <input type="text" readonly class="col-5 form-control-plaintext text-center" id="staticIMC" value="XX,X">
+                        <div class="container">
+                           <div class="row align-items-start">
+                              <!--IMC-->
+                              <div class="results-imc col-12 align-self-start input-group mb-3">
+                                 <h5 class="text-right" id="staticIMC">IMC</h5>
                               </div>
-                           </div>
-
-                           <!--Massa Gorda-->
-                           <div class="col-3 align-items-center input-group">
-                              <h5 class="col-5 text-right" for="staticMG">Massa Gorda</h5>
-                              <div class="col-7 input-group">
-                                 <input type="text" readonly class="col-5 form-control-plaintext text-center" id="staticMG" text-align="right" value="XX,X">
-                                 <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">%</span>
-                                 </div>
+                              <!--Massa Magra-->
+                              <div class="results-mm col-12 align-self-start input-group mb-3">
+                                 <h5 class="text-right" id="staticMM">Massa Magra</h5>
                               </div>
-                              
-                           </div>
-
-                           <!--Massa Magra-->
-                           <div class="col-3 align-items-center input-group mb-3">
-                              <h5 class="col-5 text-right" for="staticMM">Massa Magra</h5>
-                              <div class="col-7 input-group">
-                                 <input type="text" readonly class="col-5 form-control-plaintext text-center" id="staticMM" value="XX,X">
-                                 <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">%</span>
-                                 </div>
+                              <!--Massa Gorda-->
+                              <div class="results-mg col-12 align-self-start input-group mb-3">
+                                 <h5 class="text-right" id="staticMG">Massa Gorda</h5>                              
                               </div>
                            </div>
                         </div>
@@ -213,13 +199,15 @@
 
                        <!--Alert--> 
                         <div id="alertas">
-                           <!--Alerta não visível - Add "show" em class para deixar visível--> 
+                           <!--Alerta não visível - Add "show" em class para deixar visível-->
                            <div id="alertaValores" class="alert alert-warning alert-dismissible fade" role="alert">
+                              <!--
                               <strong>Atenção!</strong> Valores não preenchidos: <strong>v1, v2, v3!</strong>
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                               </button>
-                           </div>
+                              -->
+                           </div>                           
                         </div>
                         <!--DC (g/cm³)-->
                         <!--AMB-->
@@ -243,7 +231,7 @@
       <!--Tabelas-->
       <section id="tabelas">
          <div class="container-fluid justify-content-center tabelas text-center margin">
-            <div class="col-10 offset-sm-2">
+            <div class="tab-content col-10 offset-sm-2">
                <h3 class="mb-5">Tabelas</h3>
                <div class="d-flex-center">
                   <h4 class="mb-3">Percentual de gordura ideal para:</h4>
@@ -264,59 +252,59 @@
                            <tbody>
                            <tr>
                               <th scope="row">Excelente</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>4 a 6%</td>
+                              <td>8 a 11%</td>
+                              <td>10 a 14%</td>
+                              <td>12 a 16%</td>
+                              <td>13 a 18%</td>
                            </tr>
                            <tr>
                               <th scope="row">Bom</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>8 a 10%</td>
+                              <td>12 a 15%</td>
+                              <td>16 a 18%</td>
+                              <td>18 a 20%</td>
+                              <td>20 a 21%</td>
                            </tr>
                            <tr>
                               <th scope="row">Acima da média</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>12 a 13%</td>
+                              <td>16 a 18%</td>
+                              <td>19 a 21%</td>
+                              <td>21 a 23%</td>
+                              <td>22 a 23%</td>
                            </tr>
                            <tr>
                               <th scope="row">Média</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>14 a 16%</td>
+                              <td>18 a 20%</td>
+                              <td>21 a 23%</td>
+                              <td>24 a 25%</td>
+                              <td>24 a 25%</td>
                            </tr>
                            <tr>
                               <th scope="row">Abaixo da média</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>17 a 20%</td>
+                              <td>22 a 24%</td>
+                              <td>24 a 25%</td>
+                              <td>26 a 27%</td>
+                              <td>26 a 27%</td>
                            </tr>
                            <tr>
                               <th scope="row">Ruim</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>20 a 24%</td>
+                              <td>20 a 24%</td>
+                              <td>27 a 29%</td>
+                              <td>28 a 30%</td>
+                              <td>28 a 30%</td>
                            </tr>
                            <tr>
                               <th scope="row">Muito Ruim</th>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
-                              <td>Otto</td>
+                              <td>26 a 36%</td>
+                              <td>28 a 36%</td>
+                              <td>30 a 39%</td>
+                              <td>32 a 38%</td>
+                              <td>32 a 38%</td>
                            </tr>
                            </tbody>
                         </table>
@@ -335,62 +323,62 @@
                               </tr>
                               </thead>
                               <tbody>
-                              <tr>
-                                 <th scope="row">Excelente</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Bom</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Acima da média</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Média</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Abaixo da média</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Ruim</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">Muito Ruim</th>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                                 <td>Otto</td>
-                              </tr>
+                                 <tr>
+                                    <th scope="row">Excelente</th>
+                                    <td>13 a 16%</td>
+                                    <td>14 a 16%</td>
+                                    <td>16 a 19%</td>
+                                    <td>17 a 21%</td>
+                                    <td>18 a 22%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Bom</th>
+                                    <td>17 a 19%</td>
+                                    <td>18 a 20%</td>
+                                    <td>20 a 23%</td>
+                                    <td>23 a 25%</td>
+                                    <td>24 a 26%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Acima da média</th>
+                                    <td>20 a 22%</td>
+                                    <td>21 a 23%</td>
+                                    <td>24 a 26%</td>
+                                    <td>28 a 28%</td>
+                                    <td>27 a 29%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Média</th>
+                                    <td>23 a 25%</td>
+                                    <td>24 a 25%</td>
+                                    <td>27 a 29%</td>
+                                    <td>29 a 31%</td>
+                                    <td>30 a 32%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Abaixo da média</th>
+                                    <td>26 a 28%</td>
+                                    <td>27 a 29%</td>
+                                    <td>30 a 32%</td>
+                                    <td>32 a 34%</td>
+                                    <td>33 a 35%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Ruim</th>
+                                    <td>29 a 31%</td>
+                                    <td>31 a 33%</td>
+                                    <td>33 a 36%</td>
+                                    <td>35 a 38%</td>
+                                    <td>36 a 38%</td>
+                                 </tr>
+                                 <tr>
+                                    <th scope="row">Muito Ruim</th>
+                                    <td>33 a 43%</td>
+                                    <td>36 a 49%</td>
+                                    <td>38 a 48%</td>
+                                    <td>39 a 50%</td>
+                                    <td>39 a 49%</td>
+                                 </tr>
                               </tbody>
                         </table>
                      </div>
@@ -405,7 +393,7 @@
       <section id="exemplos">
          <div class="container-fluid exemplos text-center margin">
             
-            <div class="col-10 offset-sm-2">
+            <div class="tab-content col-10 offset-sm-2">
                <h3 class="mb-5">Exemplos</h3>
                <div class="d-flex-center">
                   <div class="row justify-content-center mw-100">
