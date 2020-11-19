@@ -110,16 +110,12 @@
 
 /* media queries */
 @media (max-width: 1200px) {
-   .tab-content {
-       width: 100%;
+   .d-flex .input-group-text .tab-pane{
+       width: 100%;     
    }
 
    .list-group {
       display: none;
-  }
-
-  .tab-pane {
-     width: 100%;
   }
 }
 
